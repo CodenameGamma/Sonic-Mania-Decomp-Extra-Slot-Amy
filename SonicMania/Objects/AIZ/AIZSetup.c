@@ -438,7 +438,7 @@ bool32 AIZSetup_CutsceneSonic_P2FlyIn(EntityCutsceneSeq *host)
         else {
             Player->targetLeaderPosition.x = player1->position.x - 0x200000;
             Player->targetLeaderPosition.y = player1->position.y + 0x80000;
-            player2->position.x            = Player->targetLeaderPosition.x;
+            player2->position.x               = Player->targetLeaderPosition.x;
             player2->direction             = FLIP_NONE;
         }
     }

@@ -464,6 +464,9 @@ struct EntityPlayer {
 #if MANIA_USE_PLUS
     int32 uncurlTimer;
 #endif
+    int32 autoJumpTimer;
+    int32 respawnTimer;
+    int32 aiInputSwapTimer;
 };
 
 // Object Struct

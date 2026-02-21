@@ -121,7 +121,16 @@ void StarPost_StageLoad(void)
                 player->direction  = StarPost->playerDirections[p];
 
                 if (!p) {
-                    EntityPlayer *sidekick = RSDK_GET_ENTITY(SLOT_PLAYER2, Player);
+                    EntityPlayer *sidekick = RSDK_GET_ENTITY(SLOT_PLAYER3, Player);
+                    if (RSDK.GetEntity(SLOT_PLAYER3) == player) {
+                        sidekick = RSDK_GET_ENTITY(SLOT_PLAYER4, Player);
+                    }
+                    if (RSDK.GetEntity(SLOT_PLAYER2) == player) {
+                        sidekick = RSDK_GET_ENTITY(SLOT_PLAYER3, Player);
+                    }
+                    if (RSDK.GetEntity(SLOT_PLAYER1) == player) {
+                        sidekick = RSDK_GET_ENTITY(SLOT_PLAYER2, Player);
+                    }
                     if (globals->gameMode != MODE_COMPETITION) {
                         sidekick->position.x = player->position.x;
                         sidekick->position.y = player->position.y;

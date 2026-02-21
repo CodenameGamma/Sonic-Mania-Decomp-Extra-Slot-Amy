@@ -265,6 +265,7 @@ typedef struct {
     int32 superMusicEnabled;
     int32 lastHasPlus;
     int32 hasPlusInitial;
+    int32 moreCharacters;
 #endif
 } GlobalVariables;
 

@@ -17,10 +17,34 @@ void TitleSetup_Update(void)
 
     ScreenInfo->position.x = 0x100 - ScreenInfo->center.x;
 }
+void SkipWait(void) {
+    RSDK_THIS(TitleSetup);
+    bool32 anyButton =  ControllerInfo->keyStart.press;
 
+    bool32 anyClick = (!TouchInfo->count && self->touched) || Unknown_anyKeyPress;
+    self->touched   = TouchInfo->count > 0;
+
+    if ((anyClick || anyButton) && self->state != TitleSetup_Draw_FadeBlack) {
+        RSDK.PlaySfx(TitleSetup->sfxMenuAccept, false, 0xFF);
+        self->timer = 0;
+
+        const char *nextScene = "Menu";
+        RSDK.SetScene("Presentation", nextScene);
+
+
+        int32 id = API_GetFilteredInputDeviceID(false, false, 5);
+
+        API_ResetInputSlotAssignments();
+        API_AssignInputSlotToDevice(CONT_P1, id);
+
+        Music_Stop();
+        self->state     = TitleSetup_State_FadeToMenu;
+        self->stateDraw = TitleSetup_Draw_FadeBlack;
+    }
+    }
 void TitleSetup_LateUpdate(void) {}
 
-void TitleSetup_StaticUpdate(void) {}
+void TitleSetup_StaticUpdate(void) { SkipWait(); }
 
 void TitleSetup_Draw(void)
 {

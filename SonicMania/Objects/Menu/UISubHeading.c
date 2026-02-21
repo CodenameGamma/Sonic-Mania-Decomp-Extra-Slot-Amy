@@ -7,6 +7,8 @@
 
 #include "Game.h"
 
+
+
 ObjectUISubHeading *UISubHeading;
 
 void UISubHeading_Update(void)
@@ -369,11 +371,7 @@ void UISubHeading_SaveButton_ActionCB(void)
             case 5: globals->playerID = ID_RAY; break;
             default: break;
         }
-
-        if ((globals->medalMods & MEDAL_ANDKNUCKLES))
-            globals->playerID |= ID_KNUCKLES_ASSIST;
-        else if (!self->frameID)
-            globals->playerID |= ID_TAILS_ASSIST;
+      
     }
 
     if (self->type == UISAVESLOT_NOSAVE || self->isNewSave) {
